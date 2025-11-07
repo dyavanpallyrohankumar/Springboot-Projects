@@ -1,0 +1,135 @@
+############################################################
+# 🧠 GENERAL SYSTEM FILES (macOS)
+############################################################
+# macOS metadata and resource fork files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS resource forks (appear as ._ files)
+._*
+
+# Icon file used by Finder
+Icon?
+# Thumbnails and temporary macOS files
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+############################################################
+# 🧱 JAVA / MAVEN / SPRING BOOT
+############################################################
+# Maven target directory
+/target/
+/build/
+/out/
+
+# Maven wrapper files (optional, keep if needed)
+!mvnw
+!mvnw.cmd
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
+
+# Log files
+*.log
+/logs/
+/log/
+/tmp/
+
+# Spring Boot devtools restart files
+.spring-boot-devtools.properties
+
+# Temporary or cache directories
+*.iml
+*.class
+*.war
+*.jar
+*.ear
+
+############################################################
+# 💻 ECLIPSE / STS (Spring Tool Suite)
+############################################################
+.classpath
+.project
+.settings/
+.apt_generated/
+.factorypath
+.springBeans
+.sts4-cache/
+
+############################################################
+# 💡 INTELLIJ IDEA
+############################################################
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+############################################################
+# 🧩 VISUAL STUDIO CODE
+############################################################
+.vscode/
+
+############################################################
+# ⚙️ OS / TOOLING CACHE FILES
+############################################################
+# JetBrains / IntelliJ indexing
+.idea/
+.idea_modules/
+
+# Gradle (if ever used)
+.gradle/
+build/
+
+# macOS temporary files
+*.swp
+*.swo
+
+############################################################
+# 🧪 TEST AND REPORTS
+############################################################
+/test-output/
+/surefire-reports/
+/jacoco-report/
+/coverage/
+*.exec
+
+############################################################
+# 🧰 DATABASE / DATA FILES
+############################################################
+# H2 file-based database (local)
+# *.mv.db
+# *.trace.db
+
+# SQLite or other embedded DBs
+*.db
+
+# Local runtime data folder (if created)
+data/
+*.h2.db
+
+############################################################
+# 🪶 ENVIRONMENT / CREDENTIAL FILES
+############################################################
+# Environment variables, credentials, or config overrides
+# .env
+# .env.local
+# .env.test
+# application-local.properties
+# application-prod.properties
+# application-*.yml
+
+############################################################
+# 📦 OTHER IGNORABLE FILES
+############################################################
+# Temporary files created by editors
+*~
+*.bak
+*.tmp
+
+# Node (if frontend added later)
+node_modules/
+package-lock.json
