@@ -62,7 +62,7 @@ public class PlayerServiceImpl implements PlayerService {
 		Optional<Player> playerOptional = repository.findById(id);
 		if (playerOptional.isPresent()) {
 			Player player = playerOptional.get();
-			repository.deleteByPlayerId(id);
+			repository.deleteById(id);
 			return player.getPlayerName() + " Player Deleted Successfully";
 		}
 		return "Not Found";

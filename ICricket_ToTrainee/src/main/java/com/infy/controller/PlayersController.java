@@ -2,17 +2,8 @@ package com.infy.controller;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import com.infy.dto.PlayerDTO;
 import com.infy.entity.Player;
 import com.infy.service.PlayerService;
@@ -57,9 +48,8 @@ public class PlayersController {
     // }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deletePlayer(@PathVariable Integer id) {
-        String message = playerService.deletePlayerById(id);
-        return ResponseEntity.ok(message);
+    public String deletePlayer(@PathVariable Integer id) {
+        return playerService.deletePlayerById(id);
     }
 
 }

@@ -13,7 +13,7 @@ import jakarta.transaction.Transactional;
 public interface PlayerRepository extends PagingAndSortingRepository<Player, Integer>, CrudRepository<Player, Integer> {
     public List<Player> findAll();
 
-    void deleteByPlayerId(Integer playerId);
+    void deleteById(Integer playerId);
 
     // public String deleteByPlayerId(Integer playerId);
     // public static final Pageable page = new Pageable();
