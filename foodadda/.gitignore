@@ -1,91 +1,113 @@
-HELP.md
-target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
 
-### Spring Boot ###
-*.log
-*.gz
-.env
-application-*.properties
-application-*.yml
-!application.properties
-!application.yml
-!application-test.properties
-!application-test.yml
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-### Build and Runtime ###
-bin/
-log/
-logs/
+# Java
+*.class
 *.jar
 *.war
-*.nar
 *.ear
+*.nar
 *.zip
+*.tar
 *.tar.gz
 *.rar
+hs_err_pid*
+replay_pid*
+*.log
 
-### Database ###
-*.db
-*.sqlite
-*.sqlite3
-*.mdb
-
-### Cache and Temporary ###
+# Build output (Maven / Gradle)
+target/
+build/
+out/
 .gradle/
-.temp/
-.cache/
-temp/
-tmp/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
+# Maven specific
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+.releaseBackup
+
+# Gradle wrapper - keep wrapper binaries out of .gitignore normally, but ignore caches
+.gradle/
+build/
+!gradle-wrapper.jar
+
+# IDEs
+# Eclipse
 .project
-.settings
-.springBeans
-.sts4-cache
+.classpath
+.settings/
+.recommenders/
+.externalToolBuilders/
+.apt_generated/
+.factorypath
 
-
-### IntelliJ IDEA ###
-.idea
+# IntelliJ
+.idea/
 *.iws
 *.iml
 *.ipr
 out/
 
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-### Eclipse ###
-.metadata
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.settings/
-.loadpath
-*.class       
-
-### VS Code ###
+# VS Code
 .vscode/
 
+# Spring Boot / app-specific
+spring-boot-devtools.log
+spring.log
+logs/
+tmp/
+temp/
+target/
+BOOT-INF/
+META-INF/
 
-### Mac OS ###
-.DS_Store
-.AppleDouble
-.LSOverride
+# Local config / secrets
+*.keystore
+*.jks
+*.p12
+*.pfx
+*.env
+.env.*
+# application-local.*
+# application-*.local.*
+# secret.properties
+credentials.yml.enc
 
-# Icon must be 32x32
-Icon?
+# Test / reports / coverage
+surefire-reports/
+failsafe-reports/
+test-output/
+coverage/
+jacoco.exec
+*.lcov
+
+# Node / frontend (if present)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+dist/
+build/
+
+# Docker
+docker-compose.override.yml
+.env
+
+# Misc
+*.swp
+*~
+.idea_modules/
+.cache/
+classpath
