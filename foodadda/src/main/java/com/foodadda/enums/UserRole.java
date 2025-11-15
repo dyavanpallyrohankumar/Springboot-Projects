@@ -1,4 +1,4 @@
-package com.foodadda.entity;
+package com.foodadda.enums;
 
 public enum UserRole {
     ADMIN, CUSTOMER, VENDOR

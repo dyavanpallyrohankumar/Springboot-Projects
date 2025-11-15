@@ -2,8 +2,7 @@ package com.foodadda.interfaces;
 
 import java.util.List;
 import com.foodadda.entity.User;
-import com.foodadda.exception.AlreadyExist;
-import com.foodadda.exception.InvalidCredintials;
+import com.foodadda.exception.*;
 
 public interface UserService {
 
