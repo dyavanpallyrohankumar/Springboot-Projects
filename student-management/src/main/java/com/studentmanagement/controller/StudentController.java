@@ -1,22 +1,16 @@
 package com.studentmanagement.controller;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.studentmanagement.exception.ResourseNotFound;
 import com.studentmanagement.model.Student;
 import com.studentmanagement.service.StudentServiceImp;
-
 import jakarta.validation.Valid;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/students")
@@ -25,28 +19,33 @@ public class StudentController {
     StudentServiceImp implementation;
 
     @GetMapping
-    public List<Student> getmethod() {
-        return implementation.getAllStudents();
+    public ResponseEntity<?> getmethod() {
+        return new ResponseEntity<>(implementation.getAllStudents(), HttpStatus.OK);
     }
 
     @GetMapping("/")
-    public Optional<Student> getMethodName(@RequestParam Long id) {
-        return implementation.getById(id);
+    public ResponseEntity<?> getMethodName(@RequestParam Integer id) throws ResourseNotFound {
+        return new ResponseEntity<>(implementation.getById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public Student save(@Valid @RequestBody Student entity) {
-        return implementation.saveentity(entity);
+    public ResponseEntity<?> save(@Valid @RequestBody Student entity) {
+        return new ResponseEntity<>(implementation.saveentity(entity), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public String putMethodName(@PathVariable Long id, @Valid @RequestBody Student entity) {
-        return implementation.updateStudent(id, entity);
+    public ResponseEntity<?> putMethodName(@PathVariable Integer id, @Valid @RequestBody Student entity)
+            throws ResourseNotFound {
+        return new ResponseEntity<>(implementation.updateStudent(id, entity), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteMethod(@PathVariable Long id) {
-        return implementation.deleteStudent(id);
+    public ResponseEntity<?> deleteMethod(@PathVariable Integer id) throws ResourseNotFound {
+        return new ResponseEntity<>(implementation.deleteStudent(id), HttpStatus.OK);
     }
 
+    @GetMapping("/page")
+    public ResponseEntity<?> getbyPagination(@RequestParam Integer page, @RequestParam Integer size) {
+        return new ResponseEntity<>(implementation.getbyPagiantion(page, size), HttpStatus.OK);
+    }
 }

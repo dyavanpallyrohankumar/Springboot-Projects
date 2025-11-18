@@ -1,11 +1,15 @@
 package com.studentmanagement.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
+import com.studentmanagement.dto.StudentDTO;
+import com.studentmanagement.exception.ResourseNotFound;
 import com.studentmanagement.model.Student;
 import com.studentmanagement.repository.StudentRepository;
 
@@ -14,38 +18,72 @@ public class StudentServiceImp {
     @Autowired
     StudentRepository repository;
 
-    public List<Student> getAllStudents() {
-        return repository.findAll();
-    }
+    ModelMapper mapper = new ModelMapper();
 
-    public Optional<Student> getById(Long id) {
-        Optional<Student> std = repository.findById(id);
-        return std.isPresent() ? Optional.of(std.get()) : std.empty();
-    }
-
-    public String deleteStudent(Long id) {
-        Optional<Student> std = repository.findById(id);
-        if (std.isPresent()) {
-            repository.deleteById(id);
-            return "Deleted Sucessfully";
+    public List<StudentDTO> getAllStudents() {
+        List<Student> stds = repository.findAll();
+        List<StudentDTO> dtos = new ArrayList<>();
+        for (Student student : stds) {
+            dtos.add(mapper.map(student, StudentDTO.class));
         }
-        return "Not found";
+        return dtos;
     }
 
-    public String updateStudent(Long id, Student entity) {
-        Optional<Student> std = repository.findById(id);
-        if (std.isPresent()) {
-            std.get().setName(entity.getName());
-            std.get().setEmail(entity.getEmail());
-            std.get().setDepartment(entity.getDepartment());
-            repository.save(std.get());
-            return "updated sucessfully Sucessfully";
+    public StudentDTO getById(Integer id) throws ResourseNotFound {
+        Student std = repository.findById(id).orElseThrow(() -> new ResourseNotFound("NO STUDENT FOUND BY ID:" + id));
+        return mapper.map(std, StudentDTO.class);
+        // return repository.findById(id);
+    }
+
+    public String deleteStudent(Integer id) throws ResourseNotFound {
+        Student std = repository.findById(id).orElseThrow(() -> new ResourseNotFound("NO STUDENT FOUND BY ID:" + id));
+        repository.delete(std);
+        return "Deleted Sucessfully";
+
+        // return repository.findById(id)
+        // .map(student -> {
+        // repository.deleteById(id);
+        // return "Deleted Successfully";
+        // })
+        // .orElse("Not found");
+    }
+
+    public String updateStudent(Integer id, Student entity) throws ResourseNotFound {
+        Student std = repository.findById(id).orElseThrow(() -> new ResourseNotFound("NO STUDENT FOUND BY ID:" + id));
+        std.setName(entity.getName());
+        std.setEmail(entity.getEmail());
+        std.setDepartment(entity.getDepartment());
+        repository.save(std);
+        return "updated sucessfully Sucessfully";
+    }
+
+    public StudentDTO saveentity(Student entity) {
+        Student saved = repository.save(entity);
+        return mapper.map(saved, StudentDTO.class);
+    }
+
+    public Student getStudentbyID(String emailid) throws ResourseNotFound {
+        Student std = repository.findByEmail(emailid)
+                .orElseThrow(() -> new ResourseNotFound("Student Doesnot Exist with " + emailid));
+        return std;
+    }
+
+    public List<StudentDTO> getlistdept(String dept) {
+        List<Student> stds = repository.findByDepartment(dept);
+        List<StudentDTO> dtos = new ArrayList<>();
+        for (Student student : stds) {
+            dtos.add(mapper.map(student, StudentDTO.class));
         }
-        return "Not Found";
+        return dtos;
     }
 
-    public Student saveentity(Student entity) {
-        return repository.save(entity);
+    public List<StudentDTO> getbyPagiantion(Integer page, Integer size) {
+        Pageable pages = PageRequest.of(page, size);
+        List<Student> stds = repository.findAll(pages).getContent();
+        List<StudentDTO> dtos = new ArrayList<>();
+        for (Student student : stds) {
+            dtos.add(mapper.map(student, StudentDTO.class));
+        }
+        return dtos;
     }
-
 }
